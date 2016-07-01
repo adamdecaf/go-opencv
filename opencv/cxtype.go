@@ -491,20 +491,32 @@ func (r *Rect) Init(x, y, w, h int) {
 	r.height = C.int(h)
 }
 func (r *Rect) X() int {
-	r_c := (*C.CvRect)(r)
-	return int(r_c.x)
+	r_c, ok := (*C.CvRect)(r)
+	if ok {
+		return int(r_c.x)
+	}
+	return 0
 }
 func (r *Rect) Y() int {
-	r_c := (*C.CvRect)(r)
-	return int(r_c.y)
+	r_c, ok := (*C.CvRect)(r)
+	if ok {
+		return int(r_c.y)
+	}
+	return 0
 }
 func (r *Rect) Width() int {
-	r_c := (*C.CvRect)(r)
-	return int(r_c.width)
+	r_c, ok := (*C.CvRect)(r)
+	if ok {
+		return int(r_c.width)
+	}
+	return 0
 }
 func (r *Rect) Height() int {
-	r_c := (*C.CvRect)(r)
-	return int(r_c.height)
+	r_c, ok := (*C.CvRect)(r)
+	if ok {
+		return int(r_c.height)
+	}
+	return 0
 }
 
 func (r *Rect) ToROI(coi int) IplROI {
